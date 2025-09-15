@@ -9,4 +9,7 @@ public class NotANumber extends RuntimeException {
 
         super(notnum + "non e' un numero!");
     }
+
+    public NotANumber() {
+    }
 }

@@ -1,6 +1,7 @@
 package Entities;
 
 import java.util.Arrays;
+import java.util.InputMismatchException;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -9,69 +10,52 @@ public class Es1 {
 
         Random estrazione = new Random(1);
 
+        int[] numbers = new int[]{
+                estrazione.nextInt(10),
+                estrazione.nextInt(10),
+                estrazione.nextInt(10),
+                estrazione.nextInt(10),
+                estrazione.nextInt(10)
+        };
 
-        int ncasuale = estrazione.nextInt(10);
-        int ncasuale1 = estrazione.nextInt(10);
-        int ncasuale2 = estrazione.nextInt(10);
-        int ncasuale3 = estrazione.nextInt(10);
-        int ncasuale4 = estrazione.nextInt(10);
+        Scanner scanner = new Scanner(System.in);
 
-        int[] Arraynumbers = new int[]{0, 1, 2, 3, 4};
-        int[] numbers = new int[]{ncasuale, ncasuale1, ncasuale2, ncasuale3, ncasuale4};
-
-        System.out.println(Arrays.toString(numbers));
         while (true) {
-            Scanner scanner = new Scanner(System.in);
-            System.out.println("numero da aggiungere in un array");
-            int newnumber = scanner.nextInt();
+            System.out.println("Array attuale: " + Arrays.toString(numbers));
 
-            System.out.println("scegli la posizione 1,2,3,4,5  0 per uscire");
-            int position = scanner.nextInt();
+            int newnumber;
+            // Lettura numero con try-catch
+            try {
+                System.out.println("Numero da aggiungere in un array:");
+                newnumber = scanner.nextInt();
+            } catch (InputMismatchException e) {
+                scanner.nextLine();
+                System.out.println("Errore: input non valido!");
+                continue;
+            }
 
-            switch (position) {
-                case 1 -> {
-                    if (position == 1) {
-                        numbers[position - 1] = newnumber;
-                        System.out.println(Arrays.toString(numbers));
+            int position;
+            try {
+                System.out.println("Scegli la posizione (1-5), 0 per uscire:");
+                position = scanner.nextInt();
+            } catch (InputMismatchException e) {
+                scanner.nextLine();
+                System.out.println("Errore: input non valido!");
+                continue;
+            }
 
-                    }
-                }
-                case 2 -> {
-                    if (position == 2) {
-                        numbers[position - 1] = newnumber;
-                        System.out.println(Arrays.toString(numbers));
-                    }
-                }
-                case 3 -> {
-                    if (position == 3) {
-                        numbers[position - 1] = newnumber;
-                        System.out.println(Arrays.toString(numbers));
-                    }
-                }
-                case 4 -> {
-                    if (position == 4) {
-                        numbers[position - 1] = newnumber;
-                        System.out.println(Arrays.toString(numbers));
-                    }
-                }
-                case 5 -> {
-                    if (position == 5) {
-                        numbers[position - 1] = newnumber;
-                        System.out.println(Arrays.toString(numbers));
-                    }
-                }
-                case 6 -> {
-                    if (position == 0) {
-                        return;
-                    }
-                }
+            if (position == 0) {
+                System.out.println("Uscita dal programma.");
+                break;
+            }
 
-
+            if (position < 1 || position > 5) {
+                System.out.println("Errore: posizione non valida!");
+                continue;
             }
 
 
+            numbers[position - 1] = newnumber;
         }
-
-
     }
 }

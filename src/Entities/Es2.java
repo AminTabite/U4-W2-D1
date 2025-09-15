@@ -1,5 +1,7 @@
 package Entities;
 
+import Exceptions.CantBeZeroException;
+
 import java.util.Scanner;
 
 public class Es2 {
@@ -10,13 +12,17 @@ public class Es2 {
 
         int km = scanner.nextInt();
         System.out.println("quanti litri hai utilizzato?");
+
         int lt = scanner.nextInt();
+        if (lt == 0) {
+            throw new CantBeZeroException(0);
+        }
 
         calckmlitri(km, lt);
     }
 
     public static void calckmlitri(int kilometri, int litri) {
-        System.out.println("hai usato " + " " + kilometri / litri);
+        System.out.println("hai usato " + " " + kilometri / litri + "litri x kilometro");
     }
 
 }
