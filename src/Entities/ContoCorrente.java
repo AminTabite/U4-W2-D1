@@ -1,10 +1,12 @@
-/*package Entities;
+package Entities;
+
+import Exceptions.BancaException;
 
 public class ContoCorrente {
-    private final int maxMovimenti = 50;
-    private String titolare;
-    private int nMovimenti;
-    private double saldo;
+    protected final int maxMovimenti = 50;
+    protected String titolare;
+    protected int nMovimenti;
+    protected double saldo;
 
     public ContoCorrente(String titolare, double saldo) {
         this.titolare = titolare;
@@ -12,10 +14,19 @@ public class ContoCorrente {
         this.nMovimenti = 0;
     }
 
-    public void preleva(double x) {
+    public void preleva(double x) throws BancaException {
+
+
         if (nMovimenti < maxMovimenti)
             saldo = saldo - x;
-        else
+
+        if (saldo - x < 0) {
+
+            nMovimenti++;
+
+            throw new BancaException("il conto e' in rosso");
+
+        } else
             saldo = saldo - x - 0.50;
         nMovimenti++;
     }
@@ -24,4 +35,3 @@ public class ContoCorrente {
         return saldo;
     }
 }
-*/
